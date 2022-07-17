@@ -6,6 +6,11 @@ function encode<T>(data: T): Uint8Array {
   return utf8e.encode(data + "\0")
 }
 
+export type Signal = {
+  signal: 'CtrlC' | 'CtrlD' | null
+  value: string | null
+}
+
 const { symbols } = dlopen(`${import.meta.dir}/../release/readline.${suffix}`, {
   Readline: {
     args: [FFIType.ptr],
@@ -21,10 +26,28 @@ export function freeString(ptr: number) {
   symbols.FreeString(ptr)
 }
 
-export function readline(prompt = '') {
+export function readline(prompt = ''): Signal {
   const data = toPtr(encode(prompt))
   const ptr = symbols.Readline(data)
   const str = new CString(ptr)
   freeString(str.ptr)
-  return JSON.parse(str.toString())
+  const json = JSON.parse(str.toString())
+  if (json.error === "Interrupt") {
+    return {
+      signal: 'CtrlC',
+      value: null,
+    }
+  }
+
+  if (json.error === "EOF") {
+    return {
+      signal: 'CtrlD',
+      value: null,
+    }
+  }
+
+  return {
+    signal: null,
+    value: json.line
+  }
 }
