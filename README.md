@@ -29,6 +29,26 @@ while (true) {
 }
 ```
 
+## Development
+
+Install dependencies
+
+```bash
+bun install
+```
+
+Build (requires Go)
+
+```bash
+bun run build
+```
+
+Run example
+
+```bash
+bun ./example.ts
+```
+
 ## License
 
 MIT
