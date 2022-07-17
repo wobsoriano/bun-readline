@@ -1,3 +1,1 @@
-export {
-  readline
-} from './ffi'
+export * from './ffi'

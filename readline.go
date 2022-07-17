@@ -62,5 +62,11 @@ func Readline(prompt *C.char) *C.char {
 	return ch(string(result))
 }
 
+//export GetScreenWidth
+func GetScreenWidth() int {
+	width := readline.GetScreenWidth()
+	return width
+}
+
 // Required but ignored
 func main() {}
