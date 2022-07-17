@@ -16,7 +16,7 @@ bun add bun-readline
 import { readline } from 'bun-readline'
 
 while (true) {
-  const line = readLine('Say anything... ')
+  const line = readline('Say anything... ')
   if (line.signal === 'CtrlC') {
     console.log('CtrlC')
     break
