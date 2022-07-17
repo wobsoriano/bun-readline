@@ -1,4 +1,4 @@
-import { dlopen, FFIType, suffix, ptr as toPtr, CString } from 'bun:ffi'
+import { dlopen, FFIType, ptr as toPtr, CString } from 'bun:ffi'
 
 const utf8e = new TextEncoder()
 
@@ -11,7 +11,8 @@ export type Signal = {
   value: string | null
 }
 
-const { symbols } = dlopen(`${import.meta.dir}/../release/readline.${suffix}`, {
+const fileName = `${process.platform}-${process.arch}`
+const { symbols } = dlopen(`${import.meta.dir}/../release/${fileName}`, {
   Readline: {
     args: [FFIType.ptr],
     returns: FFIType.ptr
