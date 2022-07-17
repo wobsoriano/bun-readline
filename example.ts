@@ -1,8 +1,14 @@
 import { readline } from "./src"
 
-function start() {
-  const result = readline("Your name? ")
-  console.log(result)
+while (true) {
+  const line = readline("Say anything... ")
+  if (line.signal === 'CtrlC') {
+    console.log('CtrlC')
+    break
+  }
+  if (line.signal === 'CtrlD') {
+    console.log('CtrlD')
+    break
+  }
+  console.log(`Your name is: ${line.value}`)
 }
-
-start()
