@@ -56,4 +56,6 @@ func Readline(prompt *C.char) *C.char {
 }
 
 // Required but ignored
-func main() {}
+func main() {
+
+}
