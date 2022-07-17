@@ -11,8 +11,8 @@ export type Signal = {
   value: string | null
 }
 
-const fileName = `${process.platform}-${process.arch}`
-const { symbols } = dlopen(`${import.meta.dir}/../release/${fileName}`, {
+const location = new URL(`../release/${process.platform}-${process.arch}`, import.meta.url).pathname
+const { symbols } = dlopen(location, {
   Readline: {
     args: [FFIType.ptr],
     returns: FFIType.ptr
