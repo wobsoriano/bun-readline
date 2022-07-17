@@ -36,7 +36,6 @@ func ech(err error) *C.char {
 
 //export FreeString
 func FreeString(str *C.char) {
-	fmt.Printf("freeing %v... \n", str)
 	C.free(unsafe.Pointer(str))
 }
 
