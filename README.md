@@ -12,7 +12,22 @@ bun add bun-readline
 
 ## Usage
 
-TODO
+```ts
+import { readline } from 'bun-readline'
+
+while (true) {
+  const line = readLine()
+  if (line.signal === 'CtrlC') {
+    console.log('CtrlC')
+    break
+  }
+  if (line.signal === 'CtrlD') {
+    console.log('CtrlD')
+    break
+  }
+  console.log(line.value)
+}
+```
 
 ## License
 
