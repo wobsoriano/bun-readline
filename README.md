@@ -34,19 +34,23 @@ while (true) {
 Install dependencies
 
 ```bash
-bun install
+$ bun install
 ```
 
-Build (requires Go)
+Build
 
 ```bash
-bun run build
+$ brew install zig
+$ brew install go
+$ go install github.com/dosgo/zigtool/zigcc@latest
+$ go install github.com/dosgo/zigtool/zigcpp@latest
+$ bun run build
 ```
 
 Run example
 
 ```bash
-bun ./example.ts
+$ bun ./example.ts
 ```
 
 ## License
