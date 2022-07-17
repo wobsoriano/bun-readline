@@ -20,10 +20,6 @@ const { symbols } = dlopen(`${import.meta.dir}/../release/readline.${suffix}`, {
     args: [],
     returns: FFIType.int
   },
-  Line: {
-    args: [FFIType.ptr],
-    returns: FFIType.ptr
-  },
   FreeString: {
     args: [FFIType.ptr],
     returns: FFIType.void
