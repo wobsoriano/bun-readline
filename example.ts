@@ -12,3 +12,5 @@ while (true) {
   }
   console.log(`Your name is: ${line.value}`)
 }
+
+// console.log(getScreenWidth())

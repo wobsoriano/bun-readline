@@ -45,27 +45,23 @@ type LineAndError struct {
 	Error string `json:"error"`
 }
 
+//export GetScreenWidth
+func GetScreenWidth() int {
+	width := readline.GetScreenWidth()
+	return width
+}
+
 //export Readline
 func Readline(prompt *C.char) *C.char {
-	rl, err := readline.New(str(prompt))
+	line, err := readline.Line(str(prompt))
 	if err != nil {
 		panic(err)
 	}
-	defer rl.Close()
-
-	line, err := rl.Readline()
-
 	result, _ := json.Marshal(&LineAndError{
 		Line:  line,
 		Error: sf(err),
 	})
 	return ch(string(result))
-}
-
-//export GetScreenWidth
-func GetScreenWidth() int {
-	width := readline.GetScreenWidth()
-	return width
 }
 
 // Required but ignored
