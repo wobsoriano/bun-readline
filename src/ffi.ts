@@ -16,14 +16,6 @@ const { symbols } = dlopen(`${import.meta.dir}/../release/readline.${suffix}`, {
     args: [FFIType.ptr],
     returns: FFIType.ptr
   },
-  GetScreenWidth: {
-    args: [],
-    returns: FFIType.int
-  },
-  LineCount: {
-    args: [],
-    returns: FFIType.int
-  },
   FreeString: {
     args: [FFIType.ptr],
     returns: FFIType.void
@@ -58,8 +50,4 @@ export function readline(prompt = ''): Signal {
     signal: null,
     value: json.line
   }
-}
-
-export function getScreenWidth(): number {
-  return symbols.GetScreenWidth()
 }

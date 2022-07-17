@@ -45,23 +45,6 @@ type LineAndError struct {
 	Error string `json:"error"`
 }
 
-//export ReadPassword
-// func ReadPassword(prompt *C.char) *C.char {
-// 	rl, err := readline.New(str(prompt))
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	defer rl.Close()
-
-// 	line, err := rl.Clean()
-
-// 	result, _ := json.Marshal(&LineAndError{
-// 		Line:  line,
-// 		Error: sf(err),
-// 	})
-// 	return ch(string(result))
-// }
-
 //export Readline
 func Readline(prompt *C.char) *C.char {
 	line, err := readline.Line(str(prompt))
@@ -70,18 +53,6 @@ func Readline(prompt *C.char) *C.char {
 		Error: sf(err),
 	})
 	return ch(string(result))
-}
-
-//export GetScreenWidth
-func GetScreenWidth() int {
-	width := readline.GetScreenWidth()
-	return width
-}
-
-//export LineCount
-func LineCount() int {
-	count := readline.LineCount(readline.GetScreenWidth(), readline.GetScreenWidth())
-	return count
 }
 
 // Required but ignored
