@@ -1,4 +1,4 @@
-import { dlopen, FFIType, ptr as toPtr, CString } from 'bun:ffi'
+import { dlopen, FFIType, ptr as toPtr, CString, suffix } from 'bun:ffi'
 
 const utf8e = new TextEncoder()
 
@@ -11,7 +11,7 @@ export type Signal = {
   value: string | null
 }
 
-const location = new URL(`../release/${process.platform}-${process.arch}`, import.meta.url).pathname
+const location = new URL(`../release/readline-${process.platform}-${process.arch}.${suffix}`, import.meta.url).pathname
 const { symbols } = dlopen(location, {
   Readline: {
     args: [FFIType.ptr],
