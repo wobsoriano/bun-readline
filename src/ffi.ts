@@ -11,7 +11,18 @@ export type Signal = {
   value: string | null
 }
 
-const location = new URL(`../release/readline-${process.platform}-${process.arch}.${suffix}`, import.meta.url).pathname
+const { platform, arch } = process
+
+let filename: string
+
+if (platform === 'linux' && arch === 'x64') {
+  filename = `../release/readline-${platform}-amd64.${suffix}`
+} else {
+  filename = `../release/readline-${platform}-${arch}.${suffix}`
+}
+
+
+const location = new URL(filename, import.meta.url).pathname
 const { symbols } = dlopen(location, {
   Readline: {
     args: [FFIType.ptr],
